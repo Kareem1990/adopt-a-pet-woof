@@ -1,0 +1,58 @@
+/* * {
+box-sizing: border-box;
+margin: 0;
+padding:0;
+font-family: 'PT Sans', sans-serif;
+} */
+
+/* .home,
+.services,
+.products,
+.sign-up {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.services {
+  background-image: url('/Users/kareemmagdy/Desktop/adopt-a-pet/client/src/assets/dog.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+} */
+/* 
+.products,
+ */
+
+
+body {
+  font-family: 'Snippet', sans-serif;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Snippet', sans-serif;
+}
+
+.small {
+  font-weight: 300;
+  font-style: italic;
+}
+
+Nav {
+  
+font-size: 30px;
+background-color:  #FED8B1;
+color: white;
+
+}
+

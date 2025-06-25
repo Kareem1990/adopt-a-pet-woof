@@ -1,0 +1,40 @@
+useDotenv: true
+
+service: adopt-service
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    MONGODB_URI: ${env:MONGODB_URI}
+
+functions:
+  getPets:
+    handler: handler.getPets
+    events:
+      - http:
+          path: pets
+          method: get
+          cors:
+            origin: '*'           # يسمح بجميع الدومينات
+            headers:
+              - Content-Type
+              - Authorization     # يسمح بتمرير الـ token
+            allowCredentials: false
+
+  createPet:
+    handler: handler.createPet
+    events:
+      - http:
+          path: pets
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: false
+
+plugins:
+  - serverless-dotenv-plugin
