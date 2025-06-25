@@ -1,6 +1,6 @@
-useDotenv: true
-
 service: adopt-service
+
+useDotenv: true
 
 provider:
   name: aws
@@ -8,8 +8,13 @@ provider:
   region: us-east-1
   environment:
     MONGODB_URI: ${env:MONGODB_URI}
+  apiGateway:
+    shouldStartNameWithService: true
+  # Enable CORS for all API Gateway responses
+  cors: true
 
 functions:
+  # Fetch all pets
   getPets:
     handler: handler.getPets
     events:
@@ -17,17 +22,46 @@ functions:
           path: pets
           method: get
           cors:
-            origin: '*'           # يسمح بجميع الدومينات
+            origin: '*'
             headers:
               - Content-Type
-              - Authorization     # يسمح بتمرير الـ token
+              - Authorization
             allowCredentials: false
 
+  # Create a new pet
   createPet:
     handler: handler.createPet
     events:
       - http:
           path: pets
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: false
+
+  # Fetch all users
+  getUsers:
+    handler: handler.getUsers
+    events:
+      - http:
+          path: users
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: false
+
+  # Create a new user
+  createUser:
+    handler: handler.createUser
+    events:
+      - http:
+          path: users
           method: post
           cors:
             origin: '*'
