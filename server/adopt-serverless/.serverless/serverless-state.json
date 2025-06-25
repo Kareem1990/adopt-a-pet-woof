@@ -9,7 +9,7 @@
       "runtime": "nodejs18.x",
       "region": "us-east-1",
       "environment": {
-        "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority"
+        "MONGODB_URI": "${env:MONGODB_URI}"
       },
       "stage": "dev",
       "versionFunctions": true,
@@ -192,7 +192,7 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority"
+                  "MONGODB_URI": "${env:MONGODB_URI}"
                 }
               },
               "Role": {
@@ -222,7 +222,7 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority"
+                  "MONGODB_URI": "${env:MONGODB_URI}"
                 }
               },
               "Role": {
