@@ -8,13 +8,11 @@ provider:
   region: us-east-1
   environment:
     MONGODB_URI: ${env:MONGODB_URI}
+    JWT_SECRET: ${env:JWT_SECRET}  # ✅ Needed to decode the token!
   apiGateway:
     shouldStartNameWithService: true
-  # Enable CORS for all API Gateway responses
-  cors: true
 
 functions:
-  # Fetch all pets
   getPets:
     handler: handler.getPets
     events:
@@ -22,13 +20,15 @@ functions:
           path: pets
           method: get
           cors:
-            origin: '*'
+            origin: "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com"
             headers:
               - Content-Type
               - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
             allowCredentials: false
 
-  # Create a new pet
   createPet:
     handler: handler.createPet
     events:
@@ -36,13 +36,15 @@ functions:
           path: pets
           method: post
           cors:
-            origin: '*'
+            origin: "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com"
             headers:
               - Content-Type
               - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
             allowCredentials: false
 
-  # Fetch all users
   getUsers:
     handler: handler.getUsers
     events:
@@ -50,13 +52,15 @@ functions:
           path: users
           method: get
           cors:
-            origin: '*'
+            origin: "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com"
             headers:
               - Content-Type
               - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
             allowCredentials: false
 
-  # Create a new user
   createUser:
     handler: handler.createUser
     events:
@@ -64,11 +68,34 @@ functions:
           path: users
           method: post
           cors:
-            origin: '*'
+            origin: "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com"
             headers:
               - Content-Type
               - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  graphql:
+    handler: graphqlHandler.graphqlHandler
+    events:
+      - http:
+          path: graphql
+          method: any
+          cors:
+            origin: "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com"
+            headers:
+              - Content-Type
+              - Authorization
+              - X-Amz-Date
+              - X-Api-Key
+              - X-Amz-Security-Token
             allowCredentials: false
 
 plugins:
   - serverless-dotenv-plugin
+
+package:
+  include:
+    - utils/**

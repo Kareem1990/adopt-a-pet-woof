@@ -10,15 +10,14 @@
       "region": "us-east-1",
       "environment": {
         "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority",
+        "JWT_SECRET": "mysecretsshhhhh",
         "PORT": "5000",
         "DB_USER": "kareemmagdy5",
-        "DB_PASS": "bomber1990",
-        "REACT_APP_API_URL": "https://wam7mddstc.execute-api.us-east-1.amazonaws.com/dev"
+        "DB_PASS": "bomber1990"
       },
       "apiGateway": {
         "shouldStartNameWithService": true
       },
-      "cors": true,
       "stage": "dev",
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
@@ -118,6 +117,12 @@
               "LogGroupName": "/aws/lambda/adopt-service-dev-createUser"
             }
           },
+          "GraphqlLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/adopt-service-dev-graphql"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -203,7 +208,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/adopt-service/dev/1750891171756-2025-06-25T22:39:31.756Z/adopt-service.zip"
+                "S3Key": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z/adopt-service.zip"
               },
               "Handler": "handler.getPets",
               "Runtime": "nodejs18.x",
@@ -213,10 +218,10 @@
               "Environment": {
                 "Variables": {
                   "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority",
+                  "JWT_SECRET": "mysecretsshhhhh",
                   "PORT": "5000",
                   "DB_USER": "kareemmagdy5",
-                  "DB_PASS": "bomber1990",
-                  "REACT_APP_API_URL": "https://wam7mddstc.execute-api.us-east-1.amazonaws.com/dev"
+                  "DB_PASS": "bomber1990"
                 }
               },
               "Role": {
@@ -237,7 +242,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/adopt-service/dev/1750891171756-2025-06-25T22:39:31.756Z/adopt-service.zip"
+                "S3Key": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z/adopt-service.zip"
               },
               "Handler": "handler.createPet",
               "Runtime": "nodejs18.x",
@@ -247,10 +252,10 @@
               "Environment": {
                 "Variables": {
                   "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority",
+                  "JWT_SECRET": "mysecretsshhhhh",
                   "PORT": "5000",
                   "DB_USER": "kareemmagdy5",
-                  "DB_PASS": "bomber1990",
-                  "REACT_APP_API_URL": "https://wam7mddstc.execute-api.us-east-1.amazonaws.com/dev"
+                  "DB_PASS": "bomber1990"
                 }
               },
               "Role": {
@@ -271,7 +276,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/adopt-service/dev/1750891171756-2025-06-25T22:39:31.756Z/adopt-service.zip"
+                "S3Key": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z/adopt-service.zip"
               },
               "Handler": "handler.getUsers",
               "Runtime": "nodejs18.x",
@@ -281,10 +286,10 @@
               "Environment": {
                 "Variables": {
                   "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority",
+                  "JWT_SECRET": "mysecretsshhhhh",
                   "PORT": "5000",
                   "DB_USER": "kareemmagdy5",
-                  "DB_PASS": "bomber1990",
-                  "REACT_APP_API_URL": "https://wam7mddstc.execute-api.us-east-1.amazonaws.com/dev"
+                  "DB_PASS": "bomber1990"
                 }
               },
               "Role": {
@@ -305,7 +310,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/adopt-service/dev/1750891171756-2025-06-25T22:39:31.756Z/adopt-service.zip"
+                "S3Key": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z/adopt-service.zip"
               },
               "Handler": "handler.createUser",
               "Runtime": "nodejs18.x",
@@ -315,10 +320,10 @@
               "Environment": {
                 "Variables": {
                   "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority",
+                  "JWT_SECRET": "mysecretsshhhhh",
                   "PORT": "5000",
                   "DB_USER": "kareemmagdy5",
-                  "DB_PASS": "bomber1990",
-                  "REACT_APP_API_URL": "https://wam7mddstc.execute-api.us-east-1.amazonaws.com/dev"
+                  "DB_PASS": "bomber1990"
                 }
               },
               "Role": {
@@ -332,44 +337,88 @@
               "CreateUserLogGroup"
             ]
           },
-          "GetPetsLambdaVersion0cLiakS3J0sOUGIS1oSVUFCOWZxIAGv29qrA6x6z20": {
+          "GraphqlLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z/adopt-service.zip"
+              },
+              "Handler": "graphqlHandler.graphqlHandler",
+              "Runtime": "nodejs18.x",
+              "FunctionName": "adopt-service-dev-graphql",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "MONGODB_URI": "mongodb+srv://kareemmagdy5:bomber1990@adoptapet-cluster.svl9hcf.mongodb.net/adopt-a-pet?retryWrites=true&w=majority",
+                  "JWT_SECRET": "mysecretsshhhhh",
+                  "PORT": "5000",
+                  "DB_USER": "kareemmagdy5",
+                  "DB_PASS": "bomber1990"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GraphqlLogGroup"
+            ]
+          },
+          "GetPetsLambdaVersionYU5AItOkZkdTi3tbgWqf6x6kbeuMYpBuvnXEPzPg9X0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetPetsLambdaFunction"
               },
-              "CodeSha256": "ob3ZDbjcIm7zzfaEfkZv4VccYYHLcqDz9Sfb88nGAm0="
+              "CodeSha256": "vPqEuTbLTww5GrYMcLHa1a//Tk39L24nvBa4EH7VNCQ="
             }
           },
-          "CreatePetLambdaVersiona0X9Izr6IlaJyHlpwOlC3Te2DF5vhs4rXrhHiNjUCa0": {
+          "CreatePetLambdaVersionev8szPePbJeqvwDCaf3M3WKzHnohUCXfIaxP8O72hM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatePetLambdaFunction"
               },
-              "CodeSha256": "ob3ZDbjcIm7zzfaEfkZv4VccYYHLcqDz9Sfb88nGAm0="
+              "CodeSha256": "vPqEuTbLTww5GrYMcLHa1a//Tk39L24nvBa4EH7VNCQ="
             }
           },
-          "GetUsersLambdaVersionzGVSm29T0shXLlIVDUXvX4AsqYbSeLXEozJ30Vn5hY": {
+          "GetUsersLambdaVersioni1yguZz3DvuMcelq64ZlJlD8PMBnv1yr2zyribf5LuI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetUsersLambdaFunction"
               },
-              "CodeSha256": "ob3ZDbjcIm7zzfaEfkZv4VccYYHLcqDz9Sfb88nGAm0="
+              "CodeSha256": "vPqEuTbLTww5GrYMcLHa1a//Tk39L24nvBa4EH7VNCQ="
             }
           },
-          "CreateUserLambdaVersionP6gcS4Usby4bA1ZO7M0FFnVJ4ud0kTw8aAhhdDBBU": {
+          "CreateUserLambdaVersion2qqvy2RxaQJDQ7UHYch9ppgDNBeeSR0wS1qEAWUA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateUserLambdaFunction"
               },
-              "CodeSha256": "ob3ZDbjcIm7zzfaEfkZv4VccYYHLcqDz9Sfb88nGAm0="
+              "CodeSha256": "vPqEuTbLTww5GrYMcLHa1a//Tk39L24nvBa4EH7VNCQ="
+            }
+          },
+          "GraphqlLambdaVersion2qLLtLSSz2cIKywgqhssw6Gu8L14RWaW5toGbVprsE": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GraphqlLambdaFunction"
+              },
+              "CodeSha256": "vPqEuTbLTww5GrYMcLHa1a//Tk39L24nvBa4EH7VNCQ="
             }
           },
           "ApiGatewayRestApi": {
@@ -414,6 +463,21 @@
               }
             }
           },
+          "ApiGatewayResourceGraphql": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "graphql",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
           "ApiGatewayMethodPetsOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
@@ -441,8 +505,8 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+                      "method.response.header.Access-Control-Allow-Origin": "'http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
                       "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'"
                     },
                     "ResponseTemplates": {
@@ -486,8 +550,8 @@
                   {
                     "StatusCode": "200",
                     "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization'",
+                      "method.response.header.Access-Control-Allow-Origin": "'http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
                       "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST,GET'"
                     },
                     "ResponseTemplates": {
@@ -498,6 +562,51 @@
               },
               "ResourceId": {
                 "Ref": "ApiGatewayResourceUsers"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayMethodGraphqlOptions": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "AuthorizationType": "NONE",
+              "HttpMethod": "OPTIONS",
+              "MethodResponses": [
+                {
+                  "StatusCode": "200",
+                  "ResponseParameters": {
+                    "method.response.header.Access-Control-Allow-Origin": true,
+                    "method.response.header.Access-Control-Allow-Headers": true,
+                    "method.response.header.Access-Control-Allow-Methods": true
+                  },
+                  "ResponseModels": {}
+                }
+              ],
+              "RequestParameters": {},
+              "Integration": {
+                "Type": "MOCK",
+                "RequestTemplates": {
+                  "application/json": "{statusCode:200}"
+                },
+                "ContentHandling": "CONVERT_TO_TEXT",
+                "IntegrationResponses": [
+                  {
+                    "StatusCode": "200",
+                    "ResponseParameters": {
+                      "method.response.header.Access-Control-Allow-Origin": "'http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com'",
+                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'"
+                    },
+                    "ResponseTemplates": {
+                      "application/json": ""
+                    }
+                  }
+                ]
+              },
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGraphql"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -688,7 +797,53 @@
               "CreateUserLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1750891161476": {
+          "ApiGatewayMethodGraphqlAny": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "ANY",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceGraphql"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GraphqlLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "GraphqlLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayDeployment1751059345487": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -699,10 +854,12 @@
             "DependsOn": [
               "ApiGatewayMethodPetsOptions",
               "ApiGatewayMethodUsersOptions",
+              "ApiGatewayMethodGraphqlOptions",
               "ApiGatewayMethodPetsGet",
               "ApiGatewayMethodPetsPost",
               "ApiGatewayMethodUsersGet",
-              "ApiGatewayMethodUsersPost"
+              "ApiGatewayMethodUsersPost",
+              "ApiGatewayMethodGraphqlAny"
             ]
           },
           "GetPetsLambdaPermissionApiGateway": {
@@ -852,6 +1009,43 @@
                 ]
               }
             }
+          },
+          "GraphqlLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GraphqlLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
           }
         },
         "Outputs": {
@@ -866,7 +1060,7 @@
           "GetPetsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetPetsLambdaVersion0cLiakS3J0sOUGIS1oSVUFCOWZxIAGv29qrA6x6z20"
+              "Ref": "GetPetsLambdaVersionYU5AItOkZkdTi3tbgWqf6x6kbeuMYpBuvnXEPzPg9X0"
             },
             "Export": {
               "Name": "sls-adopt-service-dev-GetPetsLambdaFunctionQualifiedArn"
@@ -875,7 +1069,7 @@
           "CreatePetLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatePetLambdaVersiona0X9Izr6IlaJyHlpwOlC3Te2DF5vhs4rXrhHiNjUCa0"
+              "Ref": "CreatePetLambdaVersionev8szPePbJeqvwDCaf3M3WKzHnohUCXfIaxP8O72hM"
             },
             "Export": {
               "Name": "sls-adopt-service-dev-CreatePetLambdaFunctionQualifiedArn"
@@ -884,7 +1078,7 @@
           "GetUsersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetUsersLambdaVersionzGVSm29T0shXLlIVDUXvX4AsqYbSeLXEozJ30Vn5hY"
+              "Ref": "GetUsersLambdaVersioni1yguZz3DvuMcelq64ZlJlD8PMBnv1yr2zyribf5LuI"
             },
             "Export": {
               "Name": "sls-adopt-service-dev-GetUsersLambdaFunctionQualifiedArn"
@@ -893,10 +1087,19 @@
           "CreateUserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateUserLambdaVersionP6gcS4Usby4bA1ZO7M0FFnVJ4ud0kTw8aAhhdDBBU"
+              "Ref": "CreateUserLambdaVersion2qqvy2RxaQJDQ7UHYch9ppgDNBeeSR0wS1qEAWUA"
             },
             "Export": {
               "Name": "sls-adopt-service-dev-CreateUserLambdaFunctionQualifiedArn"
+            }
+          },
+          "GraphqlLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GraphqlLambdaVersion2qLLtLSSz2cIKywgqhssw6Gu8L14RWaW5toGbVprsE"
+            },
+            "Export": {
+              "Name": "sls-adopt-service-dev-GraphqlLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -1024,14 +1227,17 @@
               "path": "pets",
               "method": "get",
               "cors": {
-                "origin": "*",
+                "origin": "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com",
                 "methods": [
                   "OPTIONS",
                   "GET"
                 ],
                 "headers": [
                   "Content-Type",
-                  "Authorization"
+                  "Authorization",
+                  "X-Amz-Date",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token"
                 ],
                 "allowCredentials": false
               },
@@ -1045,7 +1251,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetPetsLambdaVersion0cLiakS3J0sOUGIS1oSVUFCOWZxIAGv29qrA6x6z20"
+        "versionLogicalId": "GetPetsLambdaVersionYU5AItOkZkdTi3tbgWqf6x6kbeuMYpBuvnXEPzPg9X0"
       },
       "createPet": {
         "handler": "handler.createPet",
@@ -1055,14 +1261,17 @@
               "path": "pets",
               "method": "post",
               "cors": {
-                "origin": "*",
+                "origin": "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com",
                 "methods": [
                   "OPTIONS",
                   "POST"
                 ],
                 "headers": [
                   "Content-Type",
-                  "Authorization"
+                  "Authorization",
+                  "X-Amz-Date",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token"
                 ],
                 "allowCredentials": false
               },
@@ -1076,7 +1285,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CreatePetLambdaVersiona0X9Izr6IlaJyHlpwOlC3Te2DF5vhs4rXrhHiNjUCa0"
+        "versionLogicalId": "CreatePetLambdaVersionev8szPePbJeqvwDCaf3M3WKzHnohUCXfIaxP8O72hM"
       },
       "getUsers": {
         "handler": "handler.getUsers",
@@ -1086,14 +1295,17 @@
               "path": "users",
               "method": "get",
               "cors": {
-                "origin": "*",
+                "origin": "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com",
                 "methods": [
                   "OPTIONS",
                   "GET"
                 ],
                 "headers": [
                   "Content-Type",
-                  "Authorization"
+                  "Authorization",
+                  "X-Amz-Date",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token"
                 ],
                 "allowCredentials": false
               },
@@ -1107,7 +1319,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetUsersLambdaVersionzGVSm29T0shXLlIVDUXvX4AsqYbSeLXEozJ30Vn5hY"
+        "versionLogicalId": "GetUsersLambdaVersioni1yguZz3DvuMcelq64ZlJlD8PMBnv1yr2zyribf5LuI"
       },
       "createUser": {
         "handler": "handler.createUser",
@@ -1117,14 +1329,17 @@
               "path": "users",
               "method": "post",
               "cors": {
-                "origin": "*",
+                "origin": "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com",
                 "methods": [
                   "OPTIONS",
                   "POST"
                 ],
                 "headers": [
                   "Content-Type",
-                  "Authorization"
+                  "Authorization",
+                  "X-Amz-Date",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token"
                 ],
                 "allowCredentials": false
               },
@@ -1138,7 +1353,41 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "CreateUserLambdaVersionP6gcS4Usby4bA1ZO7M0FFnVJ4ud0kTw8aAhhdDBBU"
+        "versionLogicalId": "CreateUserLambdaVersion2qqvy2RxaQJDQ7UHYch9ppgDNBeeSR0wS1qEAWUA"
+      },
+      "graphql": {
+        "handler": "graphqlHandler.graphqlHandler",
+        "events": [
+          {
+            "http": {
+              "path": "graphql",
+              "method": "any",
+              "cors": {
+                "origin": "http://adopt-a-pet-frontend-2025.s3-website-us-east-1.amazonaws.com",
+                "methods": [
+                  "OPTIONS",
+                  "ANY"
+                ],
+                "headers": [
+                  "Content-Type",
+                  "Authorization",
+                  "X-Amz-Date",
+                  "X-Api-Key",
+                  "X-Amz-Security-Token"
+                ],
+                "allowCredentials": false
+              },
+              "integration": "AWS_PROXY"
+            }
+          }
+        ],
+        "name": "adopt-service-dev-graphql",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs18.x",
+        "vpc": {},
+        "versionLogicalId": "GraphqlLambdaVersion2qLLtLSSz2cIKywgqhssw6Gu8L14RWaW5toGbVprsE"
       }
     },
     "configValidationMode": "warn",
@@ -1154,6 +1403,14 @@
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
+      },
+      "package": {
+        "include": [
+          "utils/**"
+        ],
+        "artifactsS3KeyDirname": "serverless/adopt-service/dev/code-artifacts",
+        "artifact": "C:\\Users\\kimo_\\Desktop\\Coding\\adopt-a-pet-woof\\server\\adopt-serverless\\.serverless\\adopt-service.zip",
+        "artifactDirectoryName": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z"
       }
     },
     "layers": {},
@@ -1161,7 +1418,7 @@
     "artifact": "C:\\Users\\kimo_\\Desktop\\Coding\\adopt-a-pet-woof\\server\\adopt-serverless\\.serverless\\adopt-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/adopt-service/dev/1750891171756-2025-06-25T22:39:31.756Z",
+    "artifactDirectoryName": "serverless/adopt-service/dev/1751059365953-2025-06-27T21:22:45.953Z",
     "artifact": "adopt-service.zip"
   }
 }
