@@ -54,7 +54,7 @@ Adopt-a-Pet Foundation is a local pet rescue and adoption agency. Families in se
 #### 1. **Frontend (React App on AWS S3)**
 - The user visits the website, which is hosted as a static site on an AWS S3 bucket.
 - All static assets (HTML, JS, CSS, images) are served directly from S3.
-- ![AWS S3 Hosting](public/s3.png)
+- ![AWS S3 Hosting](client/public/s3.png)
 - The React app runs in the browser and interacts with the backend using GraphQL and REST APIs.
 
 #### 2. **API Gateway**
@@ -65,12 +65,12 @@ Adopt-a-Pet Foundation is a local pet rescue and adoption agency. Families in se
 - API Gateway triggers AWS Lambda functions.
 - There are Lambda functions for authentication, pet management, and user actions.
 - The backend is completely serverless, so it scales automatically and you only pay for what you use.
-- ![AWS Lambda Functions](public/lambda-functions.png)
+- ![AWS Lambda Functions](client/public/lambda-functions.png)
 
 #### 4. **MongoDB Atlas (Cloud Database)**
 - Lambda functions connect securely to MongoDB Atlas, a fully managed cloud database.
 - All pet data, user profiles, and saved pets are stored in MongoDB Atlas.
-- ![MongoDB Atlas](public/atlas.png)
+- ![MongoDB Atlas](client/public/atlas.png)
 
 #### 5. **User Experience**
 - The user can sign up, log in, browse pets, and save favorites.
