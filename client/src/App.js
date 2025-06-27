@@ -5,8 +5,6 @@ import SavedPets from './pages/SavedPets';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Footer from './components/Footer';
-import { SiDatadog } from 'react-icons/si';
-
 
 import {
   ApolloClient,
@@ -16,9 +14,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-
+// 🔧 Do not append /graphql here — include it in your .env value
 const httpLink = createHttpLink({
-  uri: `${process.env.REACT_APP_API_URL}/graphql`,
+  uri: process.env.REACT_APP_API_URL,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -36,7 +34,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -53,7 +50,6 @@ function App() {
         </>
       </Router>
     </ApolloProvider>
-
   );
 }
 
